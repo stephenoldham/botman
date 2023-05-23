@@ -18,10 +18,10 @@ trait HandlesConversations
      * @param null|string $recipient
      * @param null|string $driver
      */
-    public function startConversation(Conversation $instance, $recipient = null, $driver = null)
+    public function startConversation(Conversation $instance, $recipient = null, $driver = null, $sender = '')
     {
         if (!is_null($recipient) && !is_null($driver)) {
-            $this->message = new IncomingMessage('', $recipient, '', null, $this->config['bot_id']);
+            $this->message = new IncomingMessage('', $recipient, $sender, null, $this->config['bot_id']);
             $this->driver = DriverManager::loadFromName($driver, $this->config);
         }
         $instance->setBot($this);
